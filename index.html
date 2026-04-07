@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HACK & SHIP: Project Hail Mary | Devvit</title>
+<title>Hack & Ship | Devvit</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Lexend:wght@400;700;800;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -108,8 +108,8 @@
   /* ── TICKER (FIXED FOR MOBILE) ── */
   .ticker-wrapper { 
     background: var(--brand-orange); 
-    width: 110vw; /* Wider than screen to allow for rotation bleed */
-    margin-left: calc(50% - 55vw); /* Perfectly centers the 110vw element */
+    width: 110vw; 
+    margin-left: calc(50% - 55vw); 
     padding: 12px 0; 
     overflow: hidden; 
     transform: rotate(-1.5deg); 
@@ -127,7 +127,6 @@
 
   /* ── VISUAL MOTIVE BLOCK (The WHO) ── */
   .motive-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: 48px; border: 1px solid var(--border-dim); border-left: 6px solid var(--brand-orange); background: linear-gradient(135deg, rgba(20,20,20,0.8), transparent); border-radius: 4px; position: relative; overflow: hidden; }
-  /* Radar visual overlay */
   .motive-split::after { content: ''; position: absolute; top: -50%; left: -10%; width: 500px; height: 500px; border: 1px dashed var(--border-dim); border-radius: 50%; pointer-events: none; z-index: 0; }
   .motive-split::before { content: ''; position: absolute; top: -30%; left: 0%; width: 300px; height: 300px; border: 1px dashed var(--border-dim); border-radius: 50%; pointer-events: none; z-index: 0; }
   
@@ -139,7 +138,6 @@
   /* ── VISUAL JUDGING MATRIX ── */
   .judging-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 32px; }
   .judge-card { background: var(--bg-card); padding: 32px 24px; border: 1px solid var(--border-dim); transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-  /* HUD Corner Brackets */
   .judge-card::before { content:''; position:absolute; top:0; left:0; width:12px; height:12px; border-top: 2px solid var(--brand-purple); border-left: 2px solid var(--brand-purple); transition: 0.3s;}
   .judge-card::after { content:''; position:absolute; bottom:0; right:0; width:12px; height:12px; border-bottom: 2px solid var(--brand-purple); border-right: 2px solid var(--brand-purple); transition: 0.3s;}
   
@@ -157,7 +155,6 @@
 
   /* ── TIMELINE (FLIGHT PATH) ── */
   .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
-  /* Desktop orbital line */
   @media (min-width: 769px) { .timeline::before { content:''; position: absolute; left: 198px; top: 20px; bottom: 20px; width: 2px; background: var(--border-dim); z-index: 1; } }
   
   .timeline-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border-dim); transition: 0.3s; align-items: center; position: relative; z-index: 2; }
@@ -165,7 +162,6 @@
   .timeline-row:hover { background: linear-gradient(90deg, transparent, rgba(167, 165, 255, 0.05), transparent); padding-left: 16px; }
   
   .time-col { font-family: 'Space Grotesk', sans-serif; font-size: 14px; color: var(--text-gray); font-weight: 700; letter-spacing: 0.1em; transition: 0.3s; display: flex; align-items: center; justify-content: space-between; }
-  /* Node Dot on Desktop */
   @media (min-width: 769px) { .time-col::after { content: ''; width: 10px; height: 10px; background: var(--bg-dark); border: 2px solid var(--border-dim); border-radius: 50%; z-index: 3; transition: 0.3s; transform: translateX(5px); } }
   
   .timeline-row:hover .time-col { color: var(--brand-purple); }
@@ -205,13 +201,10 @@
   .r-item a:hover::after { opacity: 1; transform: translateX(0); }
   .r-tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: var(--text-gray); }
 
-  /* ── BRUTALIST CONTACT CARD ── */
+  /* ── BRUTALIST CONTACT CARD (Clean Version) ── */
   .card-solid { padding: 48px; border-radius: 2px; margin: 80px 0; background-color: var(--brand-purple); 
-                background-image: radial-gradient(var(--bg-dark) 1px, transparent 1px); background-size: 20px 20px;
                 color: var(--bg-dark); transition: 0.3s; display: flex; flex-direction: column; align-items: flex-start; position: relative; overflow: hidden; }
-  .card-solid::before { content: '✦✦✦'; position: absolute; right: 24px; top: -20px; font-size: 100px; color: var(--bg-dark); opacity: 0.1; line-height: 1; pointer-events: none; transition: 0.5s;}
   .card-solid:hover { transform: translateY(-4px); box-shadow: 12px 12px 0 var(--brand-orange); }
-  .card-solid:hover::before { transform: rotate(15deg) scale(1.2); }
   .card-solid h3 { color: var(--bg-dark); font-size: clamp(28px, 5vw, 40px); margin-bottom: 12px; text-shadow: 2px 2px 0px rgba(255,255,255,0.3);}
   .card-solid p { color: var(--bg-dark); font-weight: 700; font-size: clamp(14px, 3vw, 16px); max-width: 550px; margin-bottom: 24px;}
   
@@ -234,13 +227,11 @@
     
     .meta-grid { flex-direction: column; gap: 20px; padding-top: 24px; margin-top: 32px; }
     
-    /* Adjusted mobile ticker rotation and padding */
     .ticker-wrapper { transform: rotate(-2.5deg); margin: 60px 0; padding: 8px 0; }
     .ticker-item { font-size: 12px; padding: 0 20px; gap: 20px; }
     
     .motive-split { grid-template-columns: 1fr; gap: 24px; padding: 32px 24px; }
     
-    /* Mobile Timeline */
     .timeline-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; border-bottom: 1px dashed var(--border-dim); }
     .timeline-row:hover { padding-left: 0; background: none; }
     .event-content { padding-left: 0; }
@@ -252,7 +243,6 @@
     .card-solid { padding: 32px 24px; margin: 60px 0; }
     .card-solid h3 { font-size: 24px; }
     
-    /* Hide decorative HUD crosshairs on small screens */
     .hud-crosshair { display: none; }
   }
 </style>
@@ -268,7 +258,6 @@
 <div class="hud-crosshair hud-br"></div>
 
 <div class="particles">
-  <!-- Astrophage Particles generated with pure CSS logic -->
   <div class="particle" style="left: 10%; --duration: 12s; --opacity: 0.6; animation-delay: 0s;"></div>
   <div class="particle" style="left: 30%; --duration: 18s; --opacity: 0.4; animation-delay: 3s;"></div>
   <div class="particle" style="left: 50%; --duration: 15s; --opacity: 0.8; animation-delay: 1s;"></div>
@@ -291,7 +280,7 @@
       </div>
       <div class="meta-item">
         <span class="meta-label">Crew Manifest</span>
-        <span class="meta-value">30 Builders</span>
+        <span class="meta-value">50 Builders</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Status</span>
@@ -300,7 +289,7 @@
     </div>
   </header>
 
-  <!-- DYNAMIC RULES TICKER (Fixed Centering) -->
+  <!-- DYNAMIC RULES TICKER -->
   <div class="ticker-wrapper fade-in-section">
     <div class="ticker">
       <div class="ticker-item">Rule 01: Prototype, Don't Polish</div>
@@ -460,11 +449,11 @@
     </div>
   </section>
 
-  <!-- CONTACT BLOCK -->
+  <!-- CONTACT BLOCK (Clean Brutalist Version) -->
   <div class="card-solid fade-in-section">
     <h3>Need Backup?</h3>
     <p>Mission Control is standing by. If you are stuck, confused, or need an administrative override, reach out to the Devvit Organizing Team.</p>
-    <a href="mailto:devvit.work@gmail.com" class="btn-contact">Contact Command ✦</a>
+    <a href="mailto:hello@devvit.com" class="btn-contact">Contact Command ✦</a>
   </div>
 
   <!-- FOOTER -->
