@@ -231,17 +231,57 @@
   .r-item a:hover::after { opacity: 1; transform: translateX(0); }
   .r-tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: var(--text-gray); }
 
-  /* ── BRUTALIST CONTACT CARD ── */
+  /* ── BRUTALIST CONTACT CARD & FORM ── */
   .card-solid { padding: 48px; border-radius: 2px; margin: 80px 0; background-color: var(--brand-purple); 
                 color: var(--bg-dark); transition: 0.3s; display: flex; flex-direction: column; align-items: flex-start; position: relative; overflow: hidden; }
   .card-solid::before { content: ''; position: absolute; right: 24px; top: -20px; font-size: 100px; color: var(--bg-dark); opacity: 0.1; line-height: 1; pointer-events: none; transition: 0.5s;}
   .card-solid:hover { transform: translateY(-4px); box-shadow: 12px 12px 0 var(--brand-orange); }
   .card-solid:hover::before { transform: rotate(15deg) scale(1.2); }
-  .card-solid h3 { color: var(--bg-dark); font-size: clamp(28px, 5vw, 40px); margin-bottom: 12px; text-shadow: 2px 2px 0px rgba(255,255,255,0.3);}
-  .card-solid p { color: var(--bg-dark); font-weight: 700; font-size: clamp(14px, 3vw, 16px); max-width: 550px; margin-bottom: 24px;}
   
-  .btn-contact { display: inline-flex; align-items: center; gap: 10px; background: var(--bg-dark); color: var(--text-white); font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; padding: 16px 32px; font-size: 14px; border: none; cursor: pointer; transition: 0.3s; letter-spacing: 0.1em; }
-  .btn-contact:hover { background: var(--brand-orange); color: var(--bg-dark); transform: scale(1.02); }
+  .card-solid h3 { color: var(--bg-dark); font-size: clamp(28px, 5vw, 40px); margin-bottom: 12px; text-shadow: 2px 2px 0px rgba(255,255,255,0.3); position: relative; z-index: 2;}
+  .card-solid p { color: var(--bg-dark); font-weight: 700; font-size: clamp(14px, 3vw, 16px); max-width: 550px; margin-bottom: 24px; position: relative; z-index: 2;}
+  
+  /* Web3Forms styling */
+  .contact-form { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 2; }
+  .form-row { display: flex; gap: 16px; }
+  
+  .contact-input { 
+    width: 100%; 
+    padding: 16px; 
+    background: transparent; 
+    border: 2px solid rgba(14, 14, 14, 0.3); 
+    color: var(--bg-dark); 
+    font-family: 'Space Grotesk', sans-serif; 
+    font-weight: 700; 
+    font-size: 14px; 
+    transition: 0.3s; 
+    border-radius: 0;
+  }
+  .contact-input::placeholder { color: rgba(14, 14, 14, 0.6); }
+  .contact-input:focus { outline: none; border-color: var(--bg-dark); background: rgba(255, 255, 255, 0.2); }
+  
+  textarea.contact-input { resize: vertical; min-height: 100px; }
+
+  .btn-contact { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--bg-dark); color: var(--text-white); font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase; padding: 16px 32px; font-size: 14px; border: none; cursor: pointer; transition: 0.3s; letter-spacing: 0.1em; width: 100%; margin-top: 8px;}
+  .btn-contact:hover:not(:disabled) { background: var(--brand-orange); color: var(--bg-dark); transform: scale(1.02); }
+  .btn-contact:disabled { opacity: 0.7; cursor: not-allowed; }
+
+  /* Form Result Messaging styling */
+  .form-result {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: 8px;
+    padding: 14px 16px;
+    border-radius: 2px;
+    display: none; 
+    width: 100%;
+    text-align: center;
+  }
+  .form-result.show { display: block; animation: slideDown 0.3s ease-out; }
+  .form-result.success { background: var(--bg-dark); color: #4ade80; border: 1px solid #4ade80; }
+  .form-result.error { background: var(--bg-dark); color: var(--brand-orange); border: 1px solid var(--brand-orange); }
+  .form-result.loading { background: transparent; color: var(--bg-dark); border: 1px dashed var(--bg-dark); }
 
   /* ── FOOTER ── */
   .footer { text-align: center; border-top: 1px solid var(--border-dim); padding-top: 60px; margin-top: 80px; padding-bottom: 40px; position: relative; z-index: 10;}
@@ -276,6 +316,7 @@
     
     .card-solid { padding: 32px 24px; margin: 60px 0; }
     .card-solid h3 { font-size: 24px; }
+    .form-row { flex-direction: column; }
     
     /* Hide decorative HUD crosshairs on small screens */
     .hud-crosshair { display: none; }
@@ -439,7 +480,7 @@
         <div class="judge-num">04</div>
         <div class="pts-badge">25 PTS</div>
         <h4>Presentation</h4>
-        <p>Can you explain what you built clearly in 5 minutes?</p>
+        <p>Explain your build in 5 minutes. It doesn't need to be shiny—just clear on what you're doing.</p>
         <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.4s;"></div></div>
       </div>
     </div>
@@ -523,7 +564,7 @@
   <!-- CREW ALLIANCES -->
   <section class="section fade-in-section">
     <h2>Crew & Alliances</h2>
-    <p style="max-width: 700px;"><strong>Bring your crew, or we’ll match you.</strong> If you already have a team, you're cleared for launch. If you're flying solo, we will match you with a balanced crew of builders. Every squad also gets a <strong>Devvit Team Liaison</strong>.</p>
+    <p style="max-width: 700px;"><strong>You don't fly solo.</strong> We will match you with a balanced crew of builders to tackle the anomaly together. Every squad also gets a <strong>Devvit Team Liaison</strong> to help navigate the mission.</p>
     
     <div class="crew-grid">
       <div class="box">
@@ -575,17 +616,39 @@
       <div class="resource-card">
         <div class="r-level all">All Crew</div>
         <div class="r-item"><a href="https://excalidraw.com/" target="_blank">Excalidraw <span class="r-tag">MAP</span></a></div>
+        <div class="r-item"><a href="https://chroniclehq.com/" target="_blank">Chronicle <span class="r-tag">PITCH</span></a></div>
         <div class="r-item"><a href="https://www.notion.so/" target="_blank">Notion <span class="r-tag">DOCS</span></a></div>
         <div class="r-item"><a href="https://github.com/" target="_blank">GitHub <span class="r-tag">REPO</span></a></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT BLOCK -->
+  <!-- CONTACT BLOCK (WEB3FORMS AJAX INTEGRATION) -->
   <div class="card-solid fade-in-section">
     <h3>Need Backup?</h3>
-    <p>Mission Control is standing by. If you are stuck, confused, or need an administrative override, reach out to the Devvit Organizing Team.</p>
-    <a href="mailto:devvit.work@gmail.com" class="btn-contact">Contact Command </a>
+    <p>Mission Control is standing by. If you are stuck, confused, or need an administrative override, transmit a message directly to the Devvit Organizing Team.</p>
+    
+    <!-- Make sure to get your free access key from https://web3forms.com/ and replace 'YOUR_WEB3FORMS_ACCESS_KEY_HERE' -->
+    <form id="contactForm" class="contact-form">
+      
+      <input type="hidden" name="access_key" value="7956a4f0-e12c-4792-81ca-04e1ea4581f1">
+      <input type="hidden" name="subject" value="New Hack & Ship Transmision">
+      
+      <div class="form-row">
+        <input type="text" name="name" class="contact-input" placeholder="Cadet Name" required>
+        <input type="email" name="email" class="contact-input" placeholder="Comms Channel (Email)" required>
+      </div>
+      
+      <textarea name="message" class="contact-input" placeholder="Transmit your message..." required></textarea>
+      
+      <!-- Anti-Spam Checkbox -->
+      <input type="checkbox" name="botcheck" style="display: none;">
+      
+      <button type="submit" id="submitBtn" class="btn-contact">Send Transmission</button>
+      
+      <!-- Success/Error Message Container -->
+      <div id="formResult" class="form-result"></div>
+    </form>
   </div>
 
   <!-- FOOTER -->
@@ -595,6 +658,68 @@
   </footer>
 
 </div>
+
+<!-- Web3Forms AJAX Submission Script -->
+<script>
+  const form = document.getElementById('contactForm');
+  const result = document.getElementById('formResult');
+  const btn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Update UI for loading state
+      result.classList.remove('success', 'error', 'show');
+      result.classList.add('loading', 'show');
+      result.innerHTML = "Transmitting signal...";
+      btn.innerText = "Sending...";
+      btn.disabled = true;
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+          },
+          body: json
+      })
+      .then(async (response) => {
+          let jsonResponse = await response.json();
+          if (response.status == 200) {
+              result.classList.remove('loading');
+              result.classList.add('success');
+              result.innerHTML = "Transmission Sent Successfully! Command will reply soon.";
+              form.reset();
+          } else {
+              console.log(response);
+              result.classList.remove('loading');
+              result.classList.add('error');
+              result.innerHTML = jsonResponse.message || "Transmission Failed! Please try again.";
+          }
+      })
+      .catch(error => {
+          console.log(error);
+          result.classList.remove('loading');
+          result.classList.add('error');
+          result.innerHTML = "System Error! Check your connection and try again.";
+      })
+      .then(function() {
+          // Reset button
+          btn.innerText = "Send Transmission";
+          btn.disabled = false;
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+              result.classList.remove('show', 'success', 'error');
+              result.innerHTML = "";
+          }, 5000);
+      });
+  });
+</script>
 
 </body>
 </html>
