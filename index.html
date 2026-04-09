@@ -136,9 +136,32 @@
   .motive-text { position: relative; z-index: 2; }
   .motive-text p { font-size: 16px; color: var(--text-white); font-weight: 400; margin-bottom: 12px; }
 
+  /* ── PROBLEM STATEMENTS ACCORDION ── */
+  .accordion { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+  .prob-details { background: var(--bg-card); border: 1px solid var(--border-dim); transition: 0.3s; border-radius: 4px; overflow: hidden; }
+  .prob-details[open] { border-color: var(--brand-orange); box-shadow: 0 4px 30px var(--brand-orange-dim); }
+  
+  .prob-summary { padding: 24px; font-family: 'Lexend', sans-serif; font-size: clamp(16px, 4vw, 20px); color: var(--text-white); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: 0.2s; }
+  .prob-summary::-webkit-details-marker { display: none; }
+  .prob-summary:hover { background: rgba(255, 255, 255, 0.02); }
+  
+  .prob-title-wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;}
+  .prob-tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; padding: 4px 10px; border: 1px solid var(--brand-orange-dim); color: var(--brand-orange); border-radius: 2px; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap;}
+  
+  .prob-icon { color: var(--brand-orange); font-size: 24px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); line-height: 1;}
+  .prob-details[open] .prob-icon { transform: rotate(45deg); }
+  
+  .prob-content { padding: 0 24px 24px 24px; font-size: 15px; color: var(--text-gray); border-top: 1px dashed var(--border-dim); margin-top: 8px; padding-top: 24px; animation: slideDown 0.3s ease-out forwards; }
+  @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
   /* ── VISUAL JUDGING MATRIX ── */
-  .judging-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 32px; }
+  .judging-header-sub { display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .round-title { font-size: clamp(20px, 4vw, 24px); color: var(--text-white); font-family: 'Lexend', sans-serif; margin-bottom: 0; display: flex; align-items: center; gap: 12px; }
+  .round-title span { font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--brand-orange); border: 1px solid var(--brand-orange-dim); padding: 4px 8px; border-radius: 2px; letter-spacing: 0.1em; text-transform: uppercase; }
+  
+  .judging-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-bottom: 48px; }
   .judge-card { background: var(--bg-card); padding: 32px 24px; border: 1px solid var(--border-dim); transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  
   /* HUD Corner Brackets */
   .judge-card::before { content:''; position:absolute; top:0; left:0; width:12px; height:12px; border-top: 2px solid var(--brand-purple); border-left: 2px solid var(--brand-purple); transition: 0.3s;}
   .judge-card::after { content:''; position:absolute; bottom:0; right:0; width:12px; height:12px; border-bottom: 2px solid var(--brand-purple); border-right: 2px solid var(--brand-purple); transition: 0.3s;}
@@ -148,10 +171,13 @@
   
   .judge-num { font-family: 'Space Grotesk', sans-serif; font-size: 64px; font-weight: 700; color: var(--brand-purple-dim); position: absolute; top: -10px; right: -5px; line-height: 1; pointer-events: none; transition: 0.3s; }
   .judge-card:hover .judge-num { color: var(--brand-purple); right: 16px; top: 16px; font-size: 32px; }
+  
+  .pts-badge { position: absolute; bottom: 12px; right: 12px; font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: var(--brand-purple); font-weight: 700; }
+  
   .judge-card h4 { font-size: 18px; margin-bottom: 12px; color: var(--text-white); position: relative; z-index: 2; }
   .judge-card p { font-size: 14px; color: var(--text-gray); margin-bottom: 24px; line-height: 1.5; position: relative; z-index: 2; flex-grow: 1; }
   
-  .weight-bar { width: 100%; height: 4px; background: var(--bg-dark); border-radius: 2px; overflow: hidden; margin-top: auto; position: relative; z-index: 2;}
+  .weight-bar { width: calc(100% - 40px); height: 4px; background: var(--bg-dark); border-radius: 2px; overflow: hidden; margin-top: auto; position: relative; z-index: 2;}
   .weight-fill { height: 100%; background: var(--brand-purple); width: 0; transition: 1s cubic-bezier(0.16, 1, 0.3, 1); }
   .judge-card:hover .weight-fill { width: 100%; }
 
@@ -180,7 +206,7 @@
   .event-desc { font-size: 14px; margin: 0; }
 
   /* ── GRIDS (Roles & Resources) ── */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .crew-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; }
   .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
   
   .box { background: var(--bg-card); padding: 32px; border: 1px solid var(--border-dim); transition: 0.3s; position: relative; }
@@ -208,7 +234,7 @@
   /* ── BRUTALIST CONTACT CARD ── */
   .card-solid { padding: 48px; border-radius: 2px; margin: 80px 0; background-color: var(--brand-purple); 
                 color: var(--bg-dark); transition: 0.3s; display: flex; flex-direction: column; align-items: flex-start; position: relative; overflow: hidden; }
-  .card-solid::before { content: ; position: absolute; right: 24px; top: -20px; font-size: 100px; color: var(--bg-dark); opacity: 0.1; line-height: 1; pointer-events: none; transition: 0.5s;}
+  .card-solid::before { content: ''; position: absolute; right: 24px; top: -20px; font-size: 100px; color: var(--bg-dark); opacity: 0.1; line-height: 1; pointer-events: none; transition: 0.5s;}
   .card-solid:hover { transform: translateY(-4px); box-shadow: 12px 12px 0 var(--brand-orange); }
   .card-solid:hover::before { transform: rotate(15deg) scale(1.2); }
   .card-solid h3 { color: var(--bg-dark); font-size: clamp(28px, 5vw, 40px); margin-bottom: 12px; text-shadow: 2px 2px 0px rgba(255,255,255,0.3);}
@@ -245,7 +271,7 @@
     .event-content { padding-left: 0; }
     .time-col { color: var(--brand-purple); font-size: 12px; }
     
-    .grid-2 { grid-template-columns: 1fr; gap: 16px;}
+    .grid-3, .crew-grid { grid-template-columns: 1fr; gap: 16px;}
     .box, .judge-card, .resource-card { padding: 24px; }
     
     .card-solid { padding: 32px 24px; margin: 60px 0; }
@@ -328,34 +354,125 @@
     </div>
   </section>
 
+  <!-- PROBLEM STATEMENTS -->
+  <section class="section fade-in-section">
+    <h2>Mission Protocols</h2>
+    <p style="max-width: 700px;">Below are the four approved problem statements. Select one targeted anomaly, form your hypothesis, and build to resolve. <em>Click to decrypt mission parameters.</em></p>
+    
+    <div class="accordion">
+      <!-- Problem 1 -->
+      <details class="prob-details">
+        <summary class="prob-summary">
+          <div class="prob-title-wrap">1. The Stratt Mobilization <span class="prob-tag">Emergencies</span></div>
+          <div class="prob-icon">+</div>
+        </summary>
+        <div class="prob-content">
+          <p>Create a platform that helps find people with useful skills nearby during emergencies and quickly connects them so they can help.</p>
+        </div>
+      </details>
+      
+      <!-- Problem 2 -->
+      <details class="prob-details">
+        <summary class="prob-summary">
+          <div class="prob-title-wrap">2. The "Small Bolt" Project <span class="prob-tag">Micro-Tasks</span></div>
+          <div class="prob-icon">+</div>
+        </summary>
+        <div class="prob-content">
+          <p>Build a platform that breaks big NGO problems into small, simple tasks that students can quickly complete.</p>
+        </div>
+      </details>
+      
+      <!-- Problem 3 -->
+      <details class="prob-details">
+        <summary class="prob-summary">
+          <div class="prob-title-wrap">3. The Taumoeba Filter <span class="prob-tag">Food Waste</span></div>
+          <div class="prob-icon">+</div>
+        </summary>
+        <div class="prob-content">
+          <p>Build a platform that predicts extra food surplus and quickly connects it to people who need it nearby.</p>
+        </div>
+      </details>
+      
+      <!-- Problem 4 -->
+      <details class="prob-details">
+        <summary class="prob-summary">
+          <div class="prob-title-wrap">4. The Rocky Protocol <span class="prob-tag">Team Coordination</span></div>
+          <div class="prob-icon">+</div>
+        </summary>
+        <div class="prob-content">
+          <p>Build a system that helps new teams quickly figure out roles and start working smoothly right away.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
   <!-- VISUAL EVALUATION MATRIX (JUDGING CRITERIA) -->
   <section class="section fade-in-section">
     <h2>Evaluation Matrix</h2>
-    <p style="max-width: 600px;">Judges evaluate <strong>5 minutes of your presentation</strong>, not 36 hours of code. A brilliant build fails if the pitch doesn't explain why it matters.</p>
+    <p style="max-width: 650px;">Judges evaluate <strong>5 minutes of your presentation</strong>, not 36 hours of code. Each criterion is worth <strong>25 points</strong> (Total per round: 100 points). Missing the mark means failing the gate.</p>
     
+    <!-- ROUND 1 -->
+    <h3 class="round-title" style="margin-top: 48px; margin-bottom: 24px;">Round 1 <span>Video Presentation</span></h3>
     <div class="judging-grid">
       <div class="judge-card">
         <div class="judge-num">01</div>
+        <div class="pts-badge">25 PTS</div>
         <h4>Problem Def.</h4>
-        <p>Is the anomaly real and specific? Evaluated first.</p>
+        <p>Did you clearly identify a real, specific problem?</p>
         <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.1s;"></div></div>
       </div>
       <div class="judge-card">
         <div class="judge-num">02</div>
-        <h4>Hypothesis</h4>
-        <p>Does the tech logically solve the defined problem?</p>
+        <div class="pts-badge">25 PTS</div>
+        <h4>Solution</h4>
+        <p>Does your proposed approach directly address it?</p>
         <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.2s;"></div></div>
       </div>
       <div class="judge-card">
         <div class="judge-num">03</div>
+        <div class="pts-badge">25 PTS</div>
         <h4>Execution</h4>
-        <p>Does the prototype actually work? (Even partially).</p>
+        <p>How far did you get given where you started?</p>
         <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.3s;"></div></div>
       </div>
       <div class="judge-card">
         <div class="judge-num">04</div>
+        <div class="pts-badge">25 PTS</div>
         <h4>Presentation</h4>
-        <p>Can you brief command clearly before time runs out?</p>
+        <p>Can you explain what you built clearly in 5 minutes?</p>
+        <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.4s;"></div></div>
+      </div>
+    </div>
+
+    <!-- ROUND 2 -->
+    <h3 class="round-title" style="margin-bottom: 24px;">Round 2 <span>Prototype Review (Top 3)</span></h3>
+    <div class="judging-grid" style="margin-bottom: 0;">
+      <div class="judge-card">
+        <div class="judge-num">01</div>
+        <div class="pts-badge">25 PTS</div>
+        <h4>Clarity</h4>
+        <p>Can we immediately understand what it does?</p>
+        <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.1s;"></div></div>
+      </div>
+      <div class="judge-card">
+        <div class="judge-num">02</div>
+        <div class="pts-badge">25 PTS</div>
+        <h4>Completeness</h4>
+        <p>Does it cover the core features the problem required?</p>
+        <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.2s;"></div></div>
+      </div>
+      <div class="judge-card">
+        <div class="judge-num">03</div>
+        <div class="pts-badge">25 PTS</div>
+        <h4>Design</h4>
+        <p>Is the prototype visual, intuitive, and easy to use?</p>
+        <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.3s;"></div></div>
+      </div>
+      <div class="judge-card">
+        <div class="judge-num">04</div>
+        <div class="pts-badge">25 PTS</div>
+        <h4>Problem Fit</h4>
+        <p>Does what you built actually solve the problem you picked?</p>
         <div class="weight-bar"><div class="weight-fill" style="transition-delay: 0.4s;"></div></div>
       </div>
     </div>
@@ -408,7 +525,7 @@
     <h2>Crew & Alliances</h2>
     <p style="max-width: 700px;"><strong>Bring your crew, or we’ll match you.</strong> If you already have a team, you're cleared for launch. If you're flying solo, we will match you with a balanced crew of builders. Every squad also gets a <strong>Devvit Team Liaison</strong>.</p>
     
-    <div class="grid-2" style="margin-top: 40px;">
+    <div class="crew-grid">
       <div class="box">
         <div class="box-tag"><span class="insignia">⬡</span> The Grace</div>
         <h3 class="box-title">Problem Lead</h3>
@@ -423,6 +540,11 @@
         <div class="box-tag"><span class="insignia">✧</span> Communicator</div>
         <h3 class="box-title">Pitch Lead</h3>
         <p style="font-size: 14px; margin:0;">Builds the pitch deck <em>while</em> the code is written, not after.</p>
+      </div>
+      <div class="box">
+        <div class="box-tag"><span class="insignia">∆</span> Specialist</div>
+        <h3 class="box-title">Mentor Liaison</h3>
+        <p style="font-size: 14px; margin:0;">Bridges the team and their Devvit liaison, flags blockers early.</p>
       </div>
       <div class="box" style="border-color: var(--brand-orange);">
         <div class="box-tag" style="color: var(--brand-orange); border-color: var(--brand-orange-dim);"><span class="insignia">⌖</span> Mission Control</div>
