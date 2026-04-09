@@ -145,7 +145,7 @@
   .prob-summary::-webkit-details-marker { display: none; }
   .prob-summary:hover { background: rgba(255, 255, 255, 0.02); }
   
-  .prob-title-wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap;}
+  .prob-title-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
   .prob-tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; padding: 4px 10px; border: 1px solid var(--brand-orange-dim); color: var(--brand-orange); border-radius: 2px; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap;}
   
   .prob-icon { color: var(--brand-orange); font-size: 24px; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); line-height: 1;}
@@ -224,12 +224,33 @@
   .r-level.mid { color: var(--brand-orange); } .r-level.mid::before { background: var(--brand-orange); }
   .r-level.all { color: var(--brand-purple); } .r-level.all::before { background: var(--brand-purple); }
   
-  .r-item a { font-size: 14px; color: var(--text-white); display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-dim); padding-bottom: 12px; position: relative; }
+  .r-item a { 
+    font-size: 14px; 
+    color: var(--text-white); 
+    display: grid; 
+    grid-template-columns: 1fr 80px 20px; 
+    align-items: center; 
+    border-bottom: 1px solid var(--border-dim); 
+    padding-bottom: 12px; 
+    position: relative; 
+  }
   .r-item:last-child a { border-bottom: none; padding-bottom: 0; }
   .r-item a:hover { color: var(--brand-purple); padding-left: 8px; border-bottom-color: var(--brand-purple); }
-  .r-item a::after { content: '↗'; opacity: 0; transform: translateX(-10px); transition: 0.2s; font-family: 'Space Grotesk', sans-serif; }
+  .r-item a::after { 
+    content: '↗'; 
+    opacity: 0; 
+    transform: translateX(-10px); 
+    transition: 0.2s; 
+    font-family: 'Space Grotesk', sans-serif; 
+    justify-self: end;
+  }
   .r-item a:hover::after { opacity: 1; transform: translateX(0); }
-  .r-tag { font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: var(--text-gray); }
+  .r-tag { 
+    font-family: 'Space Grotesk', sans-serif; 
+    font-size: 11px; 
+    color: var(--text-gray); 
+    text-align: center;
+  }
 
   /* ── BRUTALIST CONTACT CARD & FORM ── */
   .card-solid { padding: 48px; border-radius: 2px; margin: 80px 0; background-color: var(--brand-purple); 
@@ -404,7 +425,10 @@
       <!-- Problem 1 -->
       <details class="prob-details">
         <summary class="prob-summary">
-          <div class="prob-title-wrap">1. The Stratt Mobilization <span class="prob-tag">Emergencies</span></div>
+          <div class="prob-title-wrap">
+            <span>1. The Stratt Mobilization</span>
+            <span class="prob-tag">Emergencies</span>
+          </div>
           <div class="prob-icon">+</div>
         </summary>
         <div class="prob-content">
@@ -415,7 +439,10 @@
       <!-- Problem 2 -->
       <details class="prob-details">
         <summary class="prob-summary">
-          <div class="prob-title-wrap">2. The "Small Bolt" Project <span class="prob-tag">Micro-Tasks</span></div>
+          <div class="prob-title-wrap">
+            <span>2. The "Small Bolt" Project</span>
+            <span class="prob-tag">Micro-Tasks</span>
+          </div>
           <div class="prob-icon">+</div>
         </summary>
         <div class="prob-content">
@@ -426,7 +453,10 @@
       <!-- Problem 3 -->
       <details class="prob-details">
         <summary class="prob-summary">
-          <div class="prob-title-wrap">3. The Taumoeba Filter <span class="prob-tag">Food Waste</span></div>
+          <div class="prob-title-wrap">
+            <span>3. The Taumoeba Filter</span>
+            <span class="prob-tag">Food Waste</span>
+          </div>
           <div class="prob-icon">+</div>
         </summary>
         <div class="prob-content">
@@ -437,7 +467,10 @@
       <!-- Problem 4 -->
       <details class="prob-details">
         <summary class="prob-summary">
-          <div class="prob-title-wrap">4. The Rocky Protocol <span class="prob-tag">Team Coordination</span></div>
+          <div class="prob-title-wrap">
+            <span>4. The Rocky Protocol</span>
+            <span class="prob-tag">Team Coordination</span>
+          </div>
           <div class="prob-icon">+</div>
         </summary>
         <div class="prob-content">
@@ -524,13 +557,6 @@
     <h2>Orbital Flight Path</h2>
     <div class="timeline">
       <div class="timeline-row">
-        <div class="time-col">Apr 17 // 10:00 AM</div>
-        <div class="event-content">
-          <div class="event-title">Threat Drops</div>
-          <p class="event-desc">Problem statement released. Formulate your hypothesis.</p>
-        </div>
-      </div>
-      <div class="timeline-row">
         <div class="time-col">Apr 17 // 6:00 PM</div>
         <div class="event-content">
           <div class="event-title">Mission Briefing</div>
@@ -603,22 +629,22 @@
     <div class="grid-3" style="margin-top: 32px;">
       <div class="resource-card">
         <div class="r-level beginner">Cadet Level</div>
-        <div class="r-item"><a href="https://www.figma.com/" target="_blank">Figma <span class="r-tag">DESIGN</span></a></div>
-        <div class="r-item"><a href="https://www.canva.com/" target="_blank">Canva <span class="r-tag">PITCH</span></a></div>
-        <div class="r-item"><a href="https://www.theodinproject.com/" target="_blank">Odin Project <span class="r-tag">LEARN</span></a></div>
+        <div class="r-item"><a href="https://www.figma.com/" target="_blank"><span>Figma</span> <span class="r-tag">DESIGN</span></a></div>
+        <div class="r-item"><a href="https://www.canva.com/" target="_blank"><span>Canva</span> <span class="r-tag">PITCH</span></a></div>
+        <div class="r-item"><a href="https://www.theodinproject.com/" target="_blank"><span>Odin Project</span> <span class="r-tag">LEARN</span></a></div>
       </div>
       <div class="resource-card">
         <div class="r-level mid">Specialist</div>
-        <div class="r-item"><a href="https://vercel.com/" target="_blank">Vercel <span class="r-tag">DEPLOY</span></a></div>
-        <div class="r-item"><a href="https://supabase.com/" target="_blank">Supabase <span class="r-tag">DATA</span></a></div>
-        <div class="r-item"><a href="https://replit.com/" target="_blank">Replit <span class="r-tag">CODE</span></a></div>
+        <div class="r-item"><a href="https://vercel.com/" target="_blank"><span>Vercel</span> <span class="r-tag">DEPLOY</span></a></div>
+        <div class="r-item"><a href="https://supabase.com/" target="_blank"><span>Supabase</span> <span class="r-tag">DATA</span></a></div>
+        <div class="r-item"><a href="https://replit.com/" target="_blank"><span>Replit</span> <span class="r-tag">CODE</span></a></div>
       </div>
       <div class="resource-card">
         <div class="r-level all">All Crew</div>
-        <div class="r-item"><a href="https://excalidraw.com/" target="_blank">Excalidraw <span class="r-tag">MAP</span></a></div>
-        <div class="r-item"><a href="https://chroniclehq.com/" target="_blank">Chronicle <span class="r-tag">PITCH</span></a></div>
-        <div class="r-item"><a href="https://www.notion.so/" target="_blank">Notion <span class="r-tag">DOCS</span></a></div>
-        <div class="r-item"><a href="https://github.com/" target="_blank">GitHub <span class="r-tag">REPO</span></a></div>
+        <div class="r-item"><a href="https://excalidraw.com/" target="_blank"><span>Excalidraw</span> <span class="r-tag">MAP</span></a></div>
+        <div class="r-item"><a href="https://chroniclehq.com/" target="_blank"><span>Chronicle</span> <span class="r-tag">PITCH</span></a></div>
+        <div class="r-item"><a href="https://www.notion.so/" target="_blank"><span>Notion</span> <span class="r-tag">DOCS</span></a></div>
+        <div class="r-item"><a href="https://github.com/" target="_blank"><span>GitHub</span> <span class="r-tag">REPO</span></a></div>
       </div>
     </div>
   </section>
@@ -628,7 +654,6 @@
     <h3>Need Backup?</h3>
     <p>Mission Control is standing by. If you are stuck, confused, or need an administrative override, transmit a message directly to the Devvit Organizing Team.</p>
     
-    <!-- Make sure to get your free access key from https://web3forms.com/ and replace 'YOUR_WEB3FORMS_ACCESS_KEY_HERE' -->
     <form id="contactForm" class="contact-form">
       
       <input type="hidden" name="access_key" value="7956a4f0-e12c-4792-81ca-04e1ea4581f1">
